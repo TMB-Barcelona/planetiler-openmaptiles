@@ -4,7 +4,7 @@ set -euo pipefail
 DOCKER_REGISTRY=${AWS_ECR_PRIVATE}
 
 IMAGE_NAME="tmb-planetiler-openmaptiles"
-VERSION="0.9.1"
+VERSION="3.15.1-SNAPSHOT"
 
 # Login to AWS Registry (using AWS environment variables)
 aws ecr get-login-password --region eu-west-1 | docker login --username AWS --password-stdin ${DOCKER_REGISTRY}

@@ -2,7 +2,7 @@
 set -euo pipefail
 
 IMAGE_NAME="tmb-planetiler-openmaptiles"
-VERSION="0.9.1"
+VERSION="3.15.1-SNAPSHOT"
 
 # build
 docker build -t ${IMAGE_NAME}:${VERSION} .
