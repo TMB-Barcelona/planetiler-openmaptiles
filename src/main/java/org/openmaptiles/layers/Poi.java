@@ -259,6 +259,14 @@ public class Poi implements
 
   @Override
   public void process(Tables.OsmPoiPolygon element, FeatureCollector features) {
+    if (element.subclass().equals("swimming_pool")) {
+      try {
+        double area = element.source().areaMeters();
+        if (area < 100) return;
+      } catch (GeometryException e) {
+        throw new RuntimeException(e);
+      }
+    }
     setupPoiFeature(element, features.centroidIfConvex(LAYER_NAME), null);
   }
 

@@ -171,6 +171,14 @@ public class Water implements
 
   @Override
   public void process(Tables.OsmWaterPolygon element, FeatureCollector features) {
+    if (element.leisure() != null && element.leisure().equals("swimming_pool")) {
+      try {
+        double area = element.source().areaMeters();
+        if (area < 100) return;
+      } catch (GeometryException e) {
+        throw new RuntimeException(e);
+      }
+    }
     if (!"bay".equals(element.natural())) {
       String clazz = classMapping.getOrElse(element.source(), FieldValues.CLASS_LAKE);
       features.polygon(LAYER_NAME)

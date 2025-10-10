@@ -170,7 +170,7 @@ public class OpenMapTilesProfile extends ForwardingProfile {
 
   @Override
   public String name() {
-    return OpenMapTilesSchema.NAME;
+    return OpenMapTilesSchema.NAME + " - TMB";
   }
 
   @Override
