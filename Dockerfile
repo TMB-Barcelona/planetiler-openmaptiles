@@ -8,13 +8,16 @@ COPY . /app
 # Compila amb Maven (package)
 RUN mvn clean package -DskipTests
 
+# Verifica que el jar amb dependencies existeix
+RUN test -f /app/target/planetiler-openmaptiles-*-with-deps.jar
+
 # 2. Etapa de runtime
 FROM eclipse-temurin:21-jre-alpine
 
 WORKDIR /opt/planetiler
 
 # Copia el jar amb dependencies (assembly "with-deps")
-COPY --from=builder /app/target/planetiler-openmaptiles-*-jar-with-dependencies.jar ./planetiler.jar
+COPY --from=builder /app/target/planetiler-openmaptiles-*-with-deps.jar ./planetiler.jar
 
 # Entrypoint i variables per defecte
 ENTRYPOINT ["java","-jar","/opt/planetiler/planetiler.jar"]
