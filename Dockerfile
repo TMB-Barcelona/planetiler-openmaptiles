@@ -13,8 +13,8 @@ FROM eclipse-temurin:21-jre-alpine
 
 WORKDIR /opt/planetiler
 
-# Copia el jar generat des de l’etapa build
-COPY --from=builder /app/target/planetiler-openmaptiles-*.jar ./planetiler.jar
+# Copia el jar amb dependencies (assembly "with-deps")
+COPY --from=builder /app/target/planetiler-openmaptiles-*-jar-with-dependencies.jar ./planetiler.jar
 
 # Entrypoint i variables per defecte
 ENTRYPOINT ["java","-jar","/opt/planetiler/planetiler.jar"]
